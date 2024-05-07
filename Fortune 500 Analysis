@@ -60,24 +60,24 @@ VALUES
 
 # Assign each company to "longterm", "medium-term", or "short term" based on average tenure.
 SELECT 
-company_name,
+Company_name AS "Company Name",
 CASE
 WHEN avg_employee_tenure>=5 THEN 'longterm'
 WHEN avg_employee_tenure>=2 THEN 'medium-term'
 ELSE 'short term'
-END as 'average tenure'
+END as 'Average Tenure'
 FROM fortune_companies
 ;
 
 # Find the maximum and minimum for paid time off days(pto) based on industry with at least 15 days of pto.
-SELECT Industry, Min(paid_time_off_days) AS Minimum_pto, MAX(paid_time_off_days) AS Max_pto
+SELECT Industry AS "Industry", Min(paid_time_off_days) AS "Minimum_PTO", MAX(paid_time_off_days) AS "Maximum_PTO"
 FROM fortune_companies
 GROUP BY industry
-HAVING Minimum_pto>=15
+HAVING Minimum_PTO>=15
 ;
 
 # Select the companies that have healthcare benefits and maternity leave weeks of 10 or more. 
-SELECT company_name
+SELECT company_name AS "Company Name"
 FROM fortune_companies
 WHERE healthcare_benefits=1
 AND maternity_leave_weeks>=10
