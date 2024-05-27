@@ -18,8 +18,6 @@ AND orderid <> 'Order ID'
 #3. Select the customer account numbers for all the orders that were placed in February. 
 SELECT distinct acctnum
 FROM BIT_DB.customers cust
-;
-
 INNER JOIN BIT_DB.FebSales Feb
 ON cust.order_id=FEB.orderid
 WHERE length(orderid) = 6 
@@ -27,10 +25,6 @@ AND orderid <> 'Order ID'
 ;
 
 #4. Which product was the cheapest one sold in January, and what was the price? 
-SELECT distinct Product, price
-FROM BIT_DB.JanSales
-WHERE  price in (SELECT min(price) FROM BIT_DB.JanSales)
-#OR 
 SELECT distinct product, price FROM BIT_DB.JanSales 
 ORDER BY price ASC LIMIT 1
 ;
@@ -44,7 +38,7 @@ GROUP BY product
 
 #6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
 SELECT
-SUM(Quantity), 
+sum(Quantity), 
 product, 
 sum(quantity)*price as revenue
 FROM BIT_DB.FebSales 
